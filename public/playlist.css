@@ -38,3 +38,11 @@ button {
 button:hover {
     background-color: #45a049; /* Darker green on hover */
 }
+
+
+.playlist-container {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

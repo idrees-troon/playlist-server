@@ -2,13 +2,13 @@ const express = require("express");
 const Playlist = require("../models/Playlist");
 const router = express.Router();
 
-let playlist = [
-    { id: 1, title: 'Some Music', artist: 'Some Person', genre: 'rock' },
-    { id: 2, title: 'Some Other Music', artist: 'Some Other Person', genre: 'hip-hop' },
-    { id: 3, title: 'Even More Music', artist: 'Some Other Person', genre: 'pop' },
-    { id: 4, title: 'Some Very Old Music', artist: 'Some Person', genre: 'classical' },
-    { id: 5, title: 'Some Very New Music', artist: 'Some Other Person', genre: 'EDM' }
-];
+// let playlists = [
+//     { id: 1, title: 'Some Music', artist: 'Some Person', genre: 'rock' },
+//     { id: 2, title: 'Some Other Music', artist: 'Some Other Person', genre: 'hip-hop' },
+//     { id: 3, title: 'Even More Music', artist: 'Some Other Person', genre: 'pop' },
+//     { id: 4, title: 'Some Very Old Music', artist: 'Some Person', genre: 'classical' },
+//     { id: 5, title: 'Some Very New Music', artist: 'Some Other Person', genre: 'EDM' }
+// ];
 
 
 router.get("/login", (req, res) => res.render("login"));
@@ -18,13 +18,17 @@ router.get("/aboutus", (req, res) => res.render("aboutus"));
 router.get("/services", (req, res) => res.render("services"));
 router.get("/portfolio", (req, res) => res.render("portfolio"));
 router.get("/contactus", (req, res) => res.render("contactus"));
-router.get("/contactus", (req, res) => res.render("contactus"));
+// router.get("/contactus", (req, res) => res.render("contactus"));
 
 router.get('/view-playlist', async (req, res) => {
     try {
         const playlist = await Playlist.find().exec();
-        console.log("🧪 ", playlist)
-        res.render('view-playlist', { playlist });
+       
+        if(playlist){
+            console.log("🧪 ", playlist)
+            res.render('view-playlist', { playlist });
+        }
+
     }
     catch (error) {
         console.log(error);
@@ -40,6 +44,7 @@ router.get('/add-playlist', (req, res) => {
 router.post('/add-playlist', async (req, res) => {
 
     const { title, artist, genre } = req.body;
+
     // const newPlaylistItem = {
     //     id: Math, // Generate a unique ID based on the current timestamp
     //     title,
@@ -54,6 +59,7 @@ router.post('/add-playlist', async (req, res) => {
         const playlist = new Playlist(req.body);
         await playlist.save();
         console.log("Saved Sucessfully")
+
 
         res.redirect('/view-playlist');
         

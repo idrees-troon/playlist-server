@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <%- include('partials/header') %>
+    <div class="playlist-container">
     <h1>Playlist</h1>
     <table>
         <thead>
@@ -21,6 +23,12 @@
         </thead>
         <tbody>
 
+            <!-- <% if (playlist.length === 0) { %>
+                <tr>
+                    <td colspan="4">No playlist items found.</td>
+                </tr>
+            <% } %> -->
+
             <% playlist.forEach(item => { %>
                 <tr>
                     <td><%= item.id %></td>
@@ -32,5 +40,6 @@
 
         </tbody>
     </table>
+</div>
 </body>
 </html>
