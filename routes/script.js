@@ -45,6 +45,7 @@ router.post('/add-playlist', async (req, res) => {
         // playlist.push(newPlaylistItem);
         const playlist = new Playlist(req.body);
         await playlist.save();
+        console.log("Saved Sucessfully")
 
         // res.render('view-playlist', { playlist });
     } catch (error) {
