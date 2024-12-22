@@ -20,8 +20,16 @@ router.get("/portfolio", (req, res) => res.render("portfolio"));
 router.get("/contactus", (req, res) => res.render("contactus"));
 router.get("/contactus", (req, res) => res.render("contactus"));
 
-router.get('/view-playlist', (req, res) => {
-    res.render('view-playlist', { playlist });
+router.get('/view-playlist', async (req, res) => {
+    try {
+        const playlist = await Playlist.find().exec();
+        console.log("🧪 ", playlist)
+        res.render('view-playlist', { playlist });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send('Error adding playlist item');
+    }
 });
 
 // Route to render the add-playlist page
@@ -47,8 +55,9 @@ router.post('/add-playlist', async (req, res) => {
         await playlist.save();
         console.log("Saved Sucessfully")
 
+        res.redirect('/view-playlist');
+        
         // res.render('view-playlist', { playlist });
-        res.render("home")
     } catch (error) {
         console.log(error);
         res.status(500).send('Error adding playlist item');
