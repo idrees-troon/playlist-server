@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Playlist</title>
+    <link rel="stylesheet" href="/playlist.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <h1>Add New Playlist</h1>
+    <form action="/add-playlist" method="POST">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist" required>
+        </div>
+        <div>
+            <label for="genre">Genres (comma separated):</label>
+            <input type="text" id="genre" name="genre" required>
+        </div>
+        <button type="submit">Add Playlist</button>
+    </form>
+</body>
+</html>

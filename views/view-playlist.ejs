@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOUNDSPHERE</title>
+  <link rel="stylesheet" href="playlist.css">
+</head>
+
+<body>
+    <h1>Playlist</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genres</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% playlist.forEach(item => { %>
+                <tr>
+                    <td><%= item.id %></td>
+                    <td><%= item.title %></td>
+                    <td><%= item.artist %></td>
+                    <td><%= item.genre %></td> <!-- Assuming genres is an array -->
+                </tr>
+            <% }); %>
+
+        </tbody>
+    </table>
+</body>
+</html>
