@@ -48,6 +48,7 @@ router.post('/add-playlist', async (req, res) => {
         console.log("Saved Sucessfully")
 
         // res.render('view-playlist', { playlist });
+        res.render("home")
     } catch (error) {
         console.log(error);
         res.status(500).send('Error adding playlist item');
