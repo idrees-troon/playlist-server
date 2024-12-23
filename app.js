@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Connect to the database
-// connectToDatabase();
+connectToDatabase();
 // Use routes
 app.use("/", indexRoutes);
 

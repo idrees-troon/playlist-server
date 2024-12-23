@@ -1140,7 +1140,7 @@ th, td {
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #780610;
   color: white;
   font-weight: bold;
   text-transform: uppercase;
@@ -1156,4 +1156,7 @@ tr:hover {
 
 td {
   transition: background-color 0.3s;
+  a{
+    color: #ce1e2d;
+  }
 }

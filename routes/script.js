@@ -70,6 +70,17 @@ router.post('/add-playlist', async (req, res) => {
     }
 });
 
+router.get('/delete-playlist/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Playlist.findByIdAndDelete(id);
+        res.redirect('/view-playlist');
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error deleting playlist item');
+    }
+});
+
 
 
 

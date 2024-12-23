@@ -19,6 +19,7 @@
                 <th>Title</th>
                 <th>Artist</th>
                 <th>Genres</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,8 @@
                     <td><%= item.title %></td>
                     <td><%= item.artist %></td>
                     <td><%= item.genre %></td> <!-- Assuming genres is an array -->
+                    <td><a href="/delete-playlist/<%= item.id %>">Delete</a></td>
+                    
                 </tr>
             <% }); %>
 
