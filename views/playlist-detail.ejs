@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOUNDSPHERE - Playlist Details</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+    <div class="playlist-detail-container">
+        <div class="playlist-card">
+            <h1>Playlist Details</h1>
+            <div class="playlist-info">
+                <div class="info-row">
+                    <label>Title:</label>
+                    <span><%= playlist.title %></span>
+                </div>
+                <div class="info-row">
+                    <label>Artist:</label>
+                    <span><%= playlist.artist %></span>
+                </div>
+                <div class="info-row">
+                    <label>Genre:</label>
+                    <span><%= playlist.genre %></span>
+                </div>
+                <div class="info-row">
+                    <label>ID:</label>
+                    <span class="playlist-id"><%= playlist._id %></span>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <a href="/edit-playlist/<%= playlist._id %>" class="btn edit-btn">Edit Playlist</a>
+                <a href="/delete-playlist/<%= playlist._id %>" class="btn delete-btn">Delete Playlist</a>
+                <a href="/view-playlist" class="btn back-btn">Back to All Playlists</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .playlist-detail-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .playlist-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .playlist-info {
+            margin: 2rem 0;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row label {
+            font-weight: bold;
+            min-width: 100px;
+            color: #666;
+        }
+
+        .info-row span {
+            flex: 1;
+            color: #333;
+        }
+
+        .playlist-id {
+            font-family: monospace;
+            color: #666;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+        }
+
+        .back-btn {
+            background-color: #2196F3;
+        }
+    </style>
+</body>
+
+</html>

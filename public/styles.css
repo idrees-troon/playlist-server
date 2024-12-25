@@ -1181,8 +1181,14 @@ tr:hover {
 td {
   transition: background-color 0.3s;
 
+  a {
+    text-decoration: none;
+  }
 
+  .view-playlist {
+    color: #fdfdfd;
 
+  }
 
   .edit-playlist {
     color: #cebc1e;
@@ -1199,4 +1205,19 @@ td {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.playlist-card {
+  background: black !important;
+
+}
+
+.info-row {
+  label {
+    color: #9e0b15 !important;
+  }
+
+  span {
+    color: #fff !important;
+  }
 }

@@ -1,62 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SOUNDSPHERE</title>
+
     <link rel="stylesheet" href="/styles.css">
+
 </head>
 
+
+
+
+
 <body>
+
     <%- include('partials/header') %>
 
+
         <div class="playlist-container">
+
             <h1>Playlist</h1>
+
             <table>
+
                 <thead>
+
                     <tr>
+
                         <th>ID</th>
+
                         <th>Title</th>
+
                         <th>Artist</th>
+
                         <th>Genres</th>
+
                         <th>Action</th>
+
                     </tr>
+
                 </thead>
+
                 <tbody>
 
+
                     <!-- <% if (playlist.length === 0) { %>
+
                 <tr>
+
                     <td colspan="4">No playlist items found.</td>
+
                 </tr>
+
             <% } %> -->
 
+
+
                     <% playlist.forEach(item=> { %>
+
                         <tr>
+
                             <td>
+
                                 <%= item._id %>
+
                             </td>
+
                             <td>
+
                                 <%= item.title %>
+
                             </td>
+
                             <td>
+
                                 <%= item.artist %>
+
                             </td>
+
                             <td>
+
                                 <%= item.genre %>
+
                             </td>
+
                             <td>
+
+                                <a class="view-playlist" href="/playlist/<%= item._id %>">View</a> |
+
                                 <a class="edit-playlist" href="/edit-playlist/<%= item._id %>">Edit</a> |
+
                                 <a class="delete-playlist" href="/delete-playlist/<%= item._id %>">Delete</a>
+
                             </td>
+
 
                         </tr>
+
                         <% }); %>
 
+
                 </tbody>
+
             </table>
+
         </div>
 
+
 </body>
+
 
 </html>

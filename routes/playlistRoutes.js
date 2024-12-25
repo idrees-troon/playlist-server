@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/view-playlist', async (req, res) => {
     try {
         const playlist = await Playlist.find().exec();
-        if(playlist){
+        if (playlist) {
             res.render('view-playlist', { playlist });
         }
     } catch (error) {
@@ -76,7 +76,7 @@ router.post('/edit-playlist/:id', async (req, res) => {
         }
         const { title, artist, genre } = req.body;
         const playlist = await Playlist.findByIdAndUpdate(
-            req.params.id, 
+            req.params.id,
             { title, artist, genre },
             { new: true, runValidators: true }
         );
@@ -87,6 +87,23 @@ router.post('/edit-playlist/:id', async (req, res) => {
     } catch (error) {
         console.error('Error updating playlist item:', error);
         res.status(500).send('Error updating playlist item');
+    }
+});
+
+// View specific playlist
+router.get('/playlist/:id', async (req, res) => {
+    try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send('Invalid playlist ID');
+        }
+        const playlist = await Playlist.findById(req.params.id);
+        if (!playlist) {
+            return res.status(404).send('Playlist not found');
+        }
+        res.render('playlist-detail', { playlist });
+    } catch (error) {
+        console.error('Error loading playlist:', error);
+        res.status(500).send('Error loading playlist');
     }
 });
 
