@@ -2,47 +2,82 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOUNDSPHERE</title>
-  <link rel="stylesheet" href="playlist.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOUNDSPHERE</title>
+    <link rel="stylesheet" href="playlist.css">
 </head>
 
 <body>
     <%- include('partials/header') %>
-    <div class="playlist-container">
-    <h1>Playlist</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Genres</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+        <div class="playlist-container">
+            <h1>Playlist</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Genres</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            <!-- <% if (playlist.length === 0) { %>
+                    <!-- <% if (playlist.length === 0) { %>
                 <tr>
                     <td colspan="4">No playlist items found.</td>
                 </tr>
             <% } %> -->
 
-            <% playlist.forEach(item => { %>
-                <tr>
-                    <td><%= item.id %></td>
-                    <td><%= item.title %></td>
-                    <td><%= item.artist %></td>
-                    <td><%= item.genre %></td> <!-- Assuming genres is an array -->
-                    <td><a href="/delete-playlist/<%= item.id %>">Delete</a></td>
-                    
-                </tr>
-            <% }); %>
+                    <% playlist.forEach(item=> { %>
+                        <tr>
+                            <td>
+                                <%= item.id %>
+                            </td>
+                            <td>
+                                <%= item.title %>
+                            </td>
+                            <td>
+                                <%= item.artist %>
+                            </td>
+                            <td>
+                                <%= item.genre %>
+                            </td> <!-- Assuming genres is an array -->
+                            <td><a href="/delete-playlist/<%= item.id %>">Delete</a></td>
 
-        </tbody>
-    </table>
-</div>
+                        </tr>
+                        <% }); %>
+
+                </tbody>
+            </table>
+        </div>
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <h3>CONTACT</h3>
+                    <p>Phone: +92 123 456 7890</p>
+                    <p>Email: info@soundsphere.com</p>
+                </div>
+                <div class="footer-item">
+                    <h3>FOLLOW US</h3>
+                    <p>Stay connected through our social platforms:</p>
+                    <a href="#" class="social-icon">Facebook</a> |
+                    <a href="#" class="social-icon">Instagram</a> |
+                    <a href="#" class="social-icon">Twitter</a>
+                </div>
+                <div class="footer-item">
+                    <a href="mailto:info@soundsphere.com" class="footer-btn">Get in Touch</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Soundsphere. All Rights Reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </footer>
 </body>
+
 </html>
