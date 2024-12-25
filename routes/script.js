@@ -1,5 +1,6 @@
 const express = require("express");
 const Playlist = require("../models/Playlist");
+const mongoose = require('mongoose'); // Add mongoose to the requires
 const router = express.Router();
 
 // let playlists = [
@@ -72,18 +73,58 @@ router.post('/add-playlist', async (req, res) => {
 
 router.get('/delete-playlist/:id', async (req, res) => {
     try {
-        const id = req.params.id;
-        await Playlist.findByIdAndDelete(id);
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send('Invalid playlist ID');
+        }
+        const playlist = await Playlist.findByIdAndDelete(req.params.id);
+        if (!playlist) {
+            return res.status(404).send('Playlist item not found');
+        }
         res.redirect('/view-playlist');
     } catch (error) {
-        console.log(error);
+        console.error('Error deleting playlist item:', error);
         res.status(500).send('Error deleting playlist item');
     }
 });
 
+// Route to display edit form
+router.get('/edit-playlist/:id', async (req, res) => {
+    try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send('Invalid playlist ID');
+        }
+        const playlist = await Playlist.findById(req.params.id);
+        if (!playlist) {
+            return res.status(404).send('Playlist item not found');
+        }
+        res.render('edit-playlist', { playlist });
+    } catch (error) {
+        console.error('Error loading playlist item:', error);
+        res.status(500).send('Error loading playlist item');
+    }
+});
 
-
-
+// Route to handle edit form submission
+router.post('/edit-playlist/:id', async (req, res) => {
+    try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send('Invalid playlist ID');
+        }
+        const { title, artist, genre } = req.body;
+        const playlist = await Playlist.findByIdAndUpdate(
+            req.params.id, 
+            { title, artist, genre },
+            { new: true, runValidators: true }
+        );
+        if (!playlist) {
+            return res.status(404).send('Playlist item not found');
+        }
+        res.redirect('/view-playlist');
+    } catch (error) {
+        console.error('Error updating playlist item:', error);
+        res.status(500).send('Error updating playlist item');
+    }
+});
 
 // router.get("/playlists", async (req, res) => {
 //   const playlists = await Playlist.find().exec();

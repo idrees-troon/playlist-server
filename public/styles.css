@@ -1089,7 +1089,7 @@ form {
   max-width: 600px; /* Limit the width of the form */
   margin: 20px auto; /* Center the form on the page */
   padding: 20px;
-  /* background-color: #fff;  */
+  background-color: #000000 !important; 
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
@@ -1156,7 +1156,23 @@ tr:hover {
 
 td {
   transition: background-color 0.3s;
-  a{
-    color: #ce1e2d;
-  }
+
+
+
+
+    .edit-playlist{
+      color: #cebc1e;
+    }
+
+    .delete-playlist{
+      color: #ce1e2d;
+    }
+  
+}
+
+.playlist-container {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

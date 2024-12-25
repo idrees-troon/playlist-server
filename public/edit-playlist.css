@@ -1,0 +1,45 @@
+.btn-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.edit-btn {
+    height: 40px;
+    padding: 10px 25px !important;
+    background-color: #cebc1e;
+    color: #000;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #b5a619;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(206, 188, 30, 0.2);
+}
+
+.cancel-btn {
+    padding: 10px 25px !important;
+    background-color: transparent;
+    color: #ce1e2d;
+    border: 2px solid #ce1e2d;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #ce1e2d;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(206, 30, 45, 0.2);
+}

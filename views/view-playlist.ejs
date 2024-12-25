@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOUNDSPHERE</title>
-  <link rel="stylesheet" href="playlist.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -32,11 +32,14 @@
 
             <% playlist.forEach(item => { %>
                 <tr>
-                    <td><%= item.id %></td>
+                    <td><%= item._id %></td>
                     <td><%= item.title %></td>
                     <td><%= item.artist %></td>
-                    <td><%= item.genre %></td> <!-- Assuming genres is an array -->
-                    <td><a href="/delete-playlist/<%= item.id %>">Delete</a></td>
+                    <td><%= item.genre %></td> 
+                    <td>
+                        <a class="edit-playlist" href="/edit-playlist/<%= item._id %>">Edit</a> | 
+                        <a class="delete-playlist" href="/delete-playlist/<%= item._id %>">Delete</a>
+                    </td>
                     
                 </tr>
             <% }); %>
