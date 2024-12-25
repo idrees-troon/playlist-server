@@ -1,76 +1,40 @@
 const express = require("express");
 const Playlist = require("../models/Playlist");
-const mongoose = require('mongoose'); // Add mongoose to the requires
+const mongoose = require('mongoose');
 const router = express.Router();
 
-// let playlists = [
-//     { id: 1, title: 'Some Music', artist: 'Some Person', genre: 'rock' },
-//     { id: 2, title: 'Some Other Music', artist: 'Some Other Person', genre: 'hip-hop' },
-//     { id: 3, title: 'Even More Music', artist: 'Some Other Person', genre: 'pop' },
-//     { id: 4, title: 'Some Very Old Music', artist: 'Some Person', genre: 'classical' },
-//     { id: 5, title: 'Some Very New Music', artist: 'Some Other Person', genre: 'EDM' }
-// ];
-
-
-router.get("/login", (req, res) => res.render("login"));
-
-router.get("/", (req, res) => res.render("home"));
-router.get("/aboutus", (req, res) => res.render("aboutus"));
-router.get("/services", (req, res) => res.render("services"));
-router.get("/portfolio", (req, res) => res.render("portfolio"));
-router.get("/contactus", (req, res) => res.render("contactus"));
-// router.get("/contactus", (req, res) => res.render("contactus"));
-
+// View all playlists
 router.get('/view-playlist', async (req, res) => {
     try {
         const playlist = await Playlist.find().exec();
-       
         if(playlist){
-            
             res.render('view-playlist', { playlist });
         }
-
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).send('Error adding playlist item');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error loading playlist items');
     }
 });
 
-// Route to render the add-playlist page
+// Render add playlist form
 router.get('/add-playlist', (req, res) => {
-    res.render('add-playlist'); // Render the add-playlist.ejs file
+    res.render('add-playlist');
 });
 
+// Add new playlist
 router.post('/add-playlist', async (req, res) => {
-
-    const { title, artist, genre } = req.body;
-
-    // const newPlaylistItem = {
-    //     id: Math, // Generate a unique ID based on the current timestamp
-    //     title,
-    //     artist ,
-    //     genre: genre // Convert genres to an array
-    // };
-
     try {
-        // Here you would typically add the newPlaylistItem to your data store
-        // For example, if you have an array called playlists:
-        // playlist.push(newPlaylistItem);
         const playlist = new Playlist(req.body);
         await playlist.save();
-        console.log("Saved Sucessfully")
-
-
+        console.log("Saved Successfully");
         res.redirect('/view-playlist');
-        
-        // res.render('view-playlist', { playlist });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send('Error adding playlist item');
     }
 });
 
+// Delete playlist
 router.get('/delete-playlist/:id', async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -87,7 +51,7 @@ router.get('/delete-playlist/:id', async (req, res) => {
     }
 });
 
-// Route to display edit form
+// Display edit form
 router.get('/edit-playlist/:id', async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -104,7 +68,7 @@ router.get('/edit-playlist/:id', async (req, res) => {
     }
 });
 
-// Route to handle edit form submission
+// Update playlist
 router.post('/edit-playlist/:id', async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -125,17 +89,5 @@ router.post('/edit-playlist/:id', async (req, res) => {
         res.status(500).send('Error updating playlist item');
     }
 });
-
-// router.get("/playlists", async (req, res) => {
-//   const playlists = await Playlist.find().exec();
-//   res.json(playlists);
-// });
-
-// router.post("/playlists", async (req, res) => {
-//   const playlist = new Playlist(req.body);
-//   await playlist.save();
-//   res.json(playlist);
-// });
-
 
 module.exports = router;
