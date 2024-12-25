@@ -25,7 +25,7 @@ router.get('/view-playlist', async (req, res) => {
         const playlist = await Playlist.find().exec();
        
         if(playlist){
-            console.log("🧪 ", playlist)
+            
             res.render('view-playlist', { playlist });
         }
 
